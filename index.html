@@ -1,0 +1,355 @@
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+<style type="text/css">
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+		font-weight:300;
+		font-size:18px;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1100px;
+	}
+	h1 {
+		font-weight:300;
+	}
+
+	.disclaimerbox {
+		background-color: #eee;
+		border: 1px solid #eeeeee;
+		border-radius: 10px ; -moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+		padding: 20px;
+	}
+
+	video.header-vid {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+
+	img.header-img {
+		height: 140px;
+		border: 1px solid black;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+
+	img.rounded {
+		border: 0px solid #eeeeee;
+		border-radius: 10px ;
+		-moz-border-radius: 10px ;
+		-webkit-border-radius: 10px ;
+	}
+
+	a:link,a:visited
+	{
+		color: #1367a7;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #208799;
+	}
+
+	td.dl-link {
+		height: 160px;
+		text-align: center;
+		font-size: 22px;
+	}
+
+	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+		        15px 15px 0 0px #fff, /* The fourth layer */
+		        15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+		        20px 20px 0 0px #fff, /* The fifth layer */
+		        20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+		        25px 25px 0 0px #fff, /* The fifth layer */
+		        25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
+
+		margin-left: 10px;
+		margin-right: 45px;
+	}
+
+	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+		box-shadow:
+		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+		        5px 5px 0 0px #fff, /* The second layer */
+		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+		        10px 10px 0 0px #fff, /* The third layer */
+		        10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+		margin-top: 5px;
+		margin-left: 10px;
+		margin-right: 30px;
+		margin-bottom: 5px;
+	}
+
+	.vert-cent {
+		position: relative;
+	    top: 50%;
+	    transform: translateY(-50%);
+	}
+
+	hr
+	{
+		border: 0;
+		height: 1px;
+		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+	}
+</style>
+
+<html>
+  <head>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96559401-4"></script>
+      <script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-96559401-4');
+      </script>
+      <title>Scaling up GANs for Text-to-Image Synthesis</title>
+      <meta property="og:image" content="" />
+      <meta property="og:title" content="Scaling up GANs for Text-to-Image Synthesis. In arXiv, 2023." />
+  </head>
+
+  <body>
+    <br>
+          <center>
+			  <span style="font-size:38px">Scaling up GANs for Text-to-Image Synthesis</span><br><br>
+	  		  <table align=center width=1100px>
+	  			  <tr>
+	  	              <td align=center width=250px>
+  						<span style="font-size:20px"><a href="https://taesung.me/">Minguk Kang</a><sup>1,2,*</sup></span>&nbsp;&nbsp;&nbsp;
+  						<span style="font-size:20px"><a href="https://taesung.me/">Taesung Park</a><sup>2,*</sup></span>&nbsp;&nbsp;&nbsp;
+  						<span style="font-size:20px"><a href="https://www.cs.cmu.edu/~junyanz/">Jun-Yan Zhu</a><sup>3</sup></span>&nbsp;&nbsp;&nbsp;
+  						<span style="font-size:20px"><a href="https://richzhang.github.io/">Richard Zhang</a><sup>2</sup></span>&nbsp;&nbsp;&nbsp;
+  						<span style="font-size:20px"><a href="https://jaesik.info/">Jaesik Park</a><sup>1</sup></span>&nbsp;&nbsp;&nbsp;
+  						<span style="font-size:20px"><a href="https://research.adobe.com/person/eli-shechtman/">Eli Shechtman</a><sup>2</sup></span>&nbsp;&nbsp;&nbsp;
+  						<span style="font-size:20px"><a href="https://research.adobe.com/person/sylvain-paris/">Sylvain Paris</a><sup>2</sup></span>&nbsp;&nbsp;&nbsp;
+		  		  	  </td>
+	  			  </tr>
+			  </table>
+	  		  <table align=center width=850px>
+	  			  <tr>
+	  	              <td align=center width=175px>
+	  					<center>
+				          	<span style="font-size:20px"></span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=200px>
+	  					<center>
+				          	<span style="font-size:20px"><sup>1</sup>POSTECH</span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=200px>
+	  					<center>
+				          	<span style="font-size:20px"><sup>2</sup>Adobe Research</span>
+		  		  		</center>
+		  		  	  </td>
+			      <td align=center width=200px>
+	  					<center>
+				          	<span style="font-size:20px"><sup>3</sup>CMU</span>
+		  		  		</center>
+		  		  	  </td>
+	  	              <td align=center width=175px>
+	  					<center>
+				          	<span style="font-size:20px"></span>
+		  		  		</center>
+						  </td>
+					</tr>
+					
+			  </table>
+			  <table>
+				<tr>
+				<td align=center width=120px> <span style="font-size:15pt">
+						<center>
+						<a href="https://arxiv.org/abs/2007.00653">[Paper]</a>
+						
+					</center>
+				<td align=center width=120px> <span style="font-size:15pt">
+						<center>
+						<a href="https://arxiv.org/abs/2007.00653">[Demo]</a>
+						
+					</center>
+
+				<td align=center width=120px> <span style="font-size:15pt">
+						<center>
+						<a href="https://github.com/taesungp/swapping-autoencoder-pytorch">[Code]</a>
+						
+					</center>
+				<td align=center width=120px> <span style="font-size:15pt">
+						<center>
+						<a href="https://arxiv.org/abs/2007.00653">[Results]</a>
+						
+					</center>
+
+			        <td align=center width=120px> <span style="font-size:15pt">
+					        <center>
+					
+					        <a href="./index_files/bibtex_neurips2020.txt">[Bibtex]</a>
+				       </center>
+			</td> 
+				</tr>
+			  </table>
+
+                  <br>
+
+  		  <table align=center width=1200px>
+  			  <tr>
+  	              <td width=400px>
+  					<center>
+  	                	<img class="rounded" src = "./index_files/teaser.png" width="1200px"></img>
+  	                	<br>
+					</center>
+  	              </td>
+  	              </tr>
+  	              </table>
+
+		      <hr>
+
+		<table align=center width=1100px>
+			<tr>
+				<center><h1>Abstract</h1></center>
+				<td width=200px>
+				<left>
+			<span style="font-size:18px">
+			The recent success of text-to-image synthesis has taken the world by storm and captured the general public's imagination. From a technical standpoint, it also marked a drastic change in the favored architecture to design image generative models. GANs used to be the de facto choice, e.g., with techniques like StyleGAN. With DALL&#183;E 2, auto-regressive and diffusion models became  the new standard for large-scale generative models overnight. This rapid shift leaves a fundamental question open: can GANs similarly scale up to sizes that benefit from large datasets like LAION? We find that na&#207;vely increasing the capacity of the StyleGAN architecture quickly becomes unstable. We introduce a new GAN architecture that goes well above this limit and we demonstrate that GANs are a viable option for text-to-image synthesis. Our approach has major practical advantages: it is orders of magnitude faster at inference time, supports latent interpolation and style changes.
+		</span>
+		</left>
+		</td>
+		</tr>
+		</table>
+
+		<hr>
+		  <center><h1>Image Synthesis, Manipulation, and Interpolation</h1></center>
+		  GigaGAN is a versatile framework for image generation, manipulation, and interpolation. With the ability to synthesize new images based on given prompts, GigaGAN can generate limitless visuals in a matter of seconds. 
+		  <table align="center" width="700px">
+            <tbody><tr>
+
+                    <td align="center" width="700px">
+			<center>
+				<iframe width="1120" height="630" src="https://www.youtube.com/embed/haIZPMBP-40?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+			    
+                </center>
+                </td>
+        </tr></tbody></table>
+
+		<hr>
+	 		<center><h1>3-Minute Video Intro of Our Paper (CVPR 2023)</h1></center>
+        <table align="center" width="700px">
+            <tbody><tr>
+
+                    <td align="center" width="700px">
+			<center>
+			    <iframe width="1120" height="630" src="https://www.youtube.com/embed/0elW11wRNpg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </center>
+                </td>
+        </tr></tbody></table>
+
+        <hr>
+
+	 		<center><h1>Super-Resolution using GigaGAN</h1></center>
+        <table align="center" width="700px">
+            <tbody><tr>
+
+                    <td align="center" width="700px">
+			<center>
+			    <img class="rounded" src = "./index_files/dalle2_upsampled.png" width="1200px"></img>
+				</center>
+                </td>
+        </tr></tbody></table>
+
+        <hr>
+
+		<center><h1>Disentangled Latent Space of GigaGAN</h1></center>
+        <table align="center" width="700px">
+            <tbody><tr>
+
+                    <td align="center" width="700px">
+			<center>
+			    <img class="rounded" src = "./index_files/style_swapping.png" width="1200px"></img>
+                </center>
+                </td>
+        </tr></tbody></table>
+
+        <hr>
+
+		<center><h1>More High-Resolution Images from GigaGAN</h1></center>
+        <table align="center" width="700px">
+            <tbody><tr>
+                    <td align="center" width="700px">
+			<center>
+			    <img class="rounded" src = "./" width="1200px"></img>
+                </center>
+                </td>
+        </tr></tbody></table>
+
+        <hr>
+
+  		  <table align=center width=500 px>
+	 		<center><h1>Paper</h1></center>
+  			  <tr>
+				  <td><a href=""><img class="layered-paper-big" style="height:175px" src="./index_files/page1.png"/></a></td>
+				  <td><span style="font-size:12pt">Minguk Kang,  Taesung Park, Jun-Yan Zhu, Richard Zhang, Jaesik Park, Eli Shechtman, Sylvain Paris,</span><br>
+				  <b><span style="font-size:12pt">Scaling up GANs for Text-to-Image Synthesis,</b></span><br>
+				  <span style="font-size:12pt">CVPR, 2023.</span>
+				  </td>
+  	              </td>
+              </tr>
+  		  </table>
+		  <br>
+		  <table align=center width=600px>
+			  <tr>
+				<td><span style="font-size:14pt"><center>
+					<a href="https://arxiv.org/abs/2007.00653">[Paper]</a> |
+					<a href="./index_files/bibtex_neurips2020.txt">[Bibtex]</a>
+  	            </center></td>
+              </tr>
+  		  </table>
+  		  <br>
+  		  <hr>
+
+  		  <table align=center width=1100px>
+  			  <tr>
+  	              <td width=400px>
+  					<left>
+	  		  <center><h1>Acknowledgements</h1></center>
+We thank <a href="https://scholar.google.com/citations?user=MqWYTj0AAAAJ&hl=en" target="_blank">Nicholas Kolkin</a> for the helpful discussion on the automated content and style evaluation. We thank Jeongo Seo and <a href="https://yoseobkim.github.io/" target="_blank">Yoseob Kim</a> for advice on the user interface. We thank <a href="https://ssnl.github.io/" target="_blank">Tongzhou Wang</a>, <a href="https://www.wpeebles.com/" target="_blank">William (Bill) Peebles</a>, and <a href="https://scholar.google.com/citations?hl=en&user=a7drwRMAAAAJ&view_op=list_works" target="_blank">Yu Sun</a> for the discussion about disentanglement. Taesung Park is supported by a Samsung Scholarship and an Adobe Research Fellowship, and much of this work was done as an Adobe Research intern. This research was supported in part by an Adobe gift.
+			</left>
+		</td>
+			 </tr>
+		</table>
+
+		<br><br>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75863369-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-75863369-5');
+</script>
+ -->
+
+
+</body>
+</html>
