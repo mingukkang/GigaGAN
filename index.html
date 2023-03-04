@@ -108,17 +108,7 @@
                   <span>Code</span>
                   </a>
               </span>
-              <!-- Dataset Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                  </a>
             </div>
-
           </div>
         </div>
       </div>
@@ -313,14 +303,25 @@
             The four corners are generated from the same latent z but with different text prompts.
           </p>
         </div>
-        <div class="content has-text-centered">
-            <img src="./static/images/interpolation_house.png"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-        </div>
+          <!-- Prompt Interpolation image -->
+          <div class="container is-max-desktop">
+            <div id="results-carousel" class="carousel results-carousel">
+              <div class="item item-house">
+                <img src="./static/images/interpolation_house.png"
+                class="interpolation-image"/>
+              </div>
+              <div class="item item-dog">
+                <img src="./static/images/interpolation_house.png"
+                class="interpolation-image"/>
+              </div>
+              <div class="item item-painter">
+                <img src="./static/images/interpolation_house.png"
+                class="interpolation-image"/>
+              </div>
+            </div>
+          </div>
         <!-- Prompt Interpolation image -->
 
-        <!-- Prompt mixing -->
         <h3 class="title is-4">2. Prompt mixing</h3>
         <div class="content has-text-justified">
           <p>
@@ -342,13 +343,24 @@
             Our GAN-based architecture retains a disentangled latent space, enabling us to blend the coarse style of one sample with the fine style of another.
           </p>
         </div>
-        <div class="content has-text-centered">
-            <img src="./static/images/style_swapping.png"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
+        <!-- Prompt Interpolation image -->
+        <div class="container is-max-desktop">
+          <div id="results-carousel" class="carousel results-carousel">
+            <div class="item item-house">
+              <img src="./static/images/style_swapping.png"
+              class="interpolation-image"/>
+            </div>
+            <div class="item item-dog">
+              <img src="./static/images/style_swapping_male.png"
+              class="interpolation-image"/>
+            </div>
+            <div class="item item-painter">
+              <img src="./static/images/style_swapping_house.png"
+              class="interpolation-image"/>
+            </div>
+          </div>
         </div>
-        <!-- Style swapping -->
-
+      <!-- Prompt Interpolation image -->
       </div>
     </div>
     <!--/ Animation. -->
