@@ -1,355 +1,362 @@
-<script src="https://www.google.com/jsapi" type="text/javascript"></script>
-<script type="text/javascript">google.load("jquery", "1.3.2");</script>
-
-<style type="text/css">
-	body {
-		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-		font-weight:300;
-		font-size:18px;
-		margin-left: auto;
-		margin-right: auto;
-		width: 1100px;
-	}
-	h1 {
-		font-weight:300;
-	}
-
-	.disclaimerbox {
-		background-color: #eee;
-		border: 1px solid #eeeeee;
-		border-radius: 10px ; -moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-		padding: 20px;
-	}
-
-	video.header-vid {
-		height: 140px;
-		border: 1px solid black;
-		border-radius: 10px ;
-		-moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-	}
-
-	img.header-img {
-		height: 140px;
-		border: 1px solid black;
-		border-radius: 10px ;
-		-moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-	}
-
-	img.rounded {
-		border: 0px solid #eeeeee;
-		border-radius: 10px ;
-		-moz-border-radius: 10px ;
-		-webkit-border-radius: 10px ;
-	}
-
-	a:link,a:visited
-	{
-		color: #1367a7;
-		text-decoration: none;
-	}
-	a:hover {
-		color: #208799;
-	}
-
-	td.dl-link {
-		height: 160px;
-		text-align: center;
-		font-size: 22px;
-	}
-
-	.layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
-		box-shadow:
-		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
-		        5px 5px 0 0px #fff, /* The second layer */
-		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
-		        10px 10px 0 0px #fff, /* The third layer */
-		        10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
-		        15px 15px 0 0px #fff, /* The fourth layer */
-		        15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
-		        20px 20px 0 0px #fff, /* The fifth layer */
-		        20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
-		        25px 25px 0 0px #fff, /* The fifth layer */
-		        25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
-		margin-left: 10px;
-		margin-right: 45px;
-	}
-
-	.paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
-		box-shadow:
-		        0px 0px 1px 1px rgba(0,0,0,0.35); /* The top layer shadow */
-
-		margin-left: 10px;
-		margin-right: 45px;
-	}
-
-	.layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
-		box-shadow:
-		        0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
-		        5px 5px 0 0px #fff, /* The second layer */
-		        5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
-		        10px 10px 0 0px #fff, /* The third layer */
-		        10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
-		margin-top: 5px;
-		margin-left: 10px;
-		margin-right: 30px;
-		margin-bottom: 5px;
-	}
-
-	.vert-cent {
-		position: relative;
-	    top: 50%;
-	    transform: translateY(-50%);
-	}
-
-	hr
-	{
-		border: 0;
-		height: 1px;
-		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-	}
-</style>
-
+<!DOCTYPE html>
 <html>
-  <head>
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-96559401-4"></script>
-      <script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Scaling up GANs for Text-to-Image Synthesis">
+  <meta name="keywords" content="GigaGAN, Text-to-Image, GAN, Image synthesis">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GigaGAN: Scaling up GANs for Text-to-Image Synthesis</title>
 
-	  gtag('config', 'UA-96559401-4');
-      </script>
-      <title>Scaling up GANs for Text-to-Image Synthesis</title>
-      <meta property="og:image" content="" />
-      <meta property="og:title" content="Scaling up GANs for Text-to-Image Synthesis. In arXiv, 2023." />
-  </head>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
 
-  <body>
-    <br>
-          <center>
-			  <span style="font-size:38px">Scaling up GANs for Text-to-Image Synthesis</span><br><br>
-	  		  <table align=center width=1100px>
-	  			  <tr>
-	  	              <td align=center width=250px>
-  						<span style="font-size:20px"><a href="https://taesung.me/">Minguk Kang</a><sup>1,2,*</sup></span>&nbsp;&nbsp;&nbsp;
-  						<span style="font-size:20px"><a href="https://taesung.me/">Taesung Park</a><sup>2,*</sup></span>&nbsp;&nbsp;&nbsp;
-  						<span style="font-size:20px"><a href="https://www.cs.cmu.edu/~junyanz/">Jun-Yan Zhu</a><sup>3</sup></span>&nbsp;&nbsp;&nbsp;
-  						<span style="font-size:20px"><a href="https://richzhang.github.io/">Richard Zhang</a><sup>2</sup></span>&nbsp;&nbsp;&nbsp;
-  						<span style="font-size:20px"><a href="https://jaesik.info/">Jaesik Park</a><sup>1</sup></span>&nbsp;&nbsp;&nbsp;
-  						<span style="font-size:20px"><a href="https://research.adobe.com/person/eli-shechtman/">Eli Shechtman</a><sup>2</sup></span>&nbsp;&nbsp;&nbsp;
-  						<span style="font-size:20px"><a href="https://research.adobe.com/person/sylvain-paris/">Sylvain Paris</a><sup>2</sup></span>&nbsp;&nbsp;&nbsp;
-		  		  	  </td>
-	  			  </tr>
-			  </table>
-	  		  <table align=center width=850px>
-	  			  <tr>
-	  	              <td align=center width=175px>
-	  					<center>
-				          	<span style="font-size:20px"></span>
-		  		  		</center>
-		  		  	  </td>
-	  	              <td align=center width=200px>
-	  					<center>
-				          	<span style="font-size:20px"><sup>1</sup>POSTECH</span>
-		  		  		</center>
-		  		  	  </td>
-	  	              <td align=center width=200px>
-	  					<center>
-				          	<span style="font-size:20px"><sup>2</sup>Adobe Research</span>
-		  		  		</center>
-		  		  	  </td>
-			      <td align=center width=200px>
-	  					<center>
-				          	<span style="font-size:20px"><sup>3</sup>CMU</span>
-		  		  		</center>
-		  		  	  </td>
-	  	              <td align=center width=175px>
-	  					<center>
-				          	<span style="font-size:20px"></span>
-		  		  		</center>
-						  </td>
-					</tr>
-					
-			  </table>
-			  <table>
-				<tr>
-				<td align=center width=120px> <span style="font-size:15pt">
-						<center>
-						<a href="https://arxiv.org/abs/2007.00653">[Paper]</a>
-						
-					</center>
-				<td align=center width=120px> <span style="font-size:15pt">
-						<center>
-						<a href="https://arxiv.org/abs/2007.00653">[Demo]</a>
-						
-					</center>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
 
-				<td align=center width=120px> <span style="font-size:15pt">
-						<center>
-						<a href="https://github.com/taesungp/swapping-autoencoder-pytorch">[Code]</a>
-						
-					</center>
-				<td align=center width=120px> <span style="font-size:15pt">
-						<center>
-						<a href="https://arxiv.org/abs/2007.00653">[Results]</a>
-						
-					</center>
 
-			        <td align=center width=120px> <span style="font-size:15pt">
-					        <center>
-					
-					        <a href="./index_files/bibtex_neurips2020.txt">[Bibtex]</a>
-				       </center>
-			</td> 
-				</tr>
-			  </table>
+<body>
+  <section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">GigaGAN</h1>
+          <h1 class="title is-2 publication-title">Scaling up GANs for Text-to-Image Synthesis</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://cvlab.postech.ac.kr/lab/">Minguk Kang</a><sup>1,3</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.cs.cmu.edu/~junyanz/">Jun-Yan Zhu</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://richzhang.github.io/">Richard Zhang</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://jaesik.info/">Jaesik Park</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://research.adobe.com/person/eli-shechtman/">Eli Shechtman</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://research.adobe.com/person/sylvain-paris/">Sylvain Paris</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://taesung.me/">Taesung Park</a><sup>3</sup>
+            </span>
+          </div>
 
-                  <br>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>POSTECH,</span>
+            <span class="author-block"><sup>2</sup>Carnegie Mellon University,</span>
+            <span class="author-block"><sup>3</sup>Adobe Research</span>
+          </div>
 
-  		  <table align=center width=1200px>
-  			  <tr>
-  	              <td width=400px>
-  					<center>
-  	                	<img class="rounded" src = "./index_files/teaser.png" width="1200px"></img>
-  	                	<br>
-					</center>
-  	              </td>
-  	              </tr>
-  	              </table>
+          <div class="is-size-5 publication-venue">
+            in CVPR 2023
+          </div>
 
-		      <hr>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/google/nerfies"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+            </div>
 
-		<table align=center width=1100px>
-			<tr>
-				<center><h1>Abstract</h1></center>
-				<td width=200px>
-				<left>
-			<span style="font-size:18px">
-			The recent success of text-to-image synthesis has taken the world by storm and captured the general public's imagination. From a technical standpoint, it also marked a drastic change in the favored architecture to design image generative models. GANs used to be the de facto choice, e.g., with techniques like StyleGAN. With DALL&#183;E 2, auto-regressive and diffusion models became  the new standard for large-scale generative models overnight. This rapid shift leaves a fundamental question open: can GANs similarly scale up to sizes that benefit from large datasets like LAION? We find that na&#207;vely increasing the capacity of the StyleGAN architecture quickly becomes unstable. We introduce a new GAN architecture that goes well above this limit and we demonstrate that GANs are a viable option for text-to-image synthesis. Our approach has major practical advantages: it is orders of magnitude faster at inference time, supports latent interpolation and style changes.
-		</span>
-		</left>
-		</td>
-		</tr>
-		</table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-		<hr>
-		  <center><h1>Image Synthesis, Manipulation, and Interpolation</h1></center>
-		  GigaGAN is a versatile framework for image generation, manipulation, and interpolation. With the ability to synthesize new images based on given prompts, GigaGAN can generate limitless visuals in a matter of seconds. 
-		  <table align="center" width="700px">
-            <tbody><tr>
+<section class="hero teaser">
+  <div class="container is-max-desktop has-text-centered">
+    <div class="hero-body">
+      <h2 class="title is-3">Giga-scale GAN for Text-to-Image Synthesis</h2>
+      <img src="./static/images/Text2img.png">
+      <h2 class="subtitle has-text-centered">
+        GigaGAN can synthesize 16-megapixel pixels in 3.67 seconds.
+      </h2>
+    </div>
+  </div>
+</section>
 
-                    <td align="center" width="700px">
-			<center>
-				<iframe width="1120" height="630" src="https://www.youtube.com/embed/haIZPMBP-40?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-			    
-                </center>
-                </td>
-        </tr></tbody></table>
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-3">Upscaling to 16-megapixel photos with GigaGAN</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-iguana">
+          <img src="./static/images/iguana.png"
+          class="interpolation-image"/>
+        </div>
+        <div class="item item-dog">
+          <img src="./static/images/upscale_dog.png"
+          class="interpolation-image"/>
+        </div>
+        <div class="item item-painter">
+          <img src="./static/images/upscale_painter.png"
+          class="interpolation-image"/>
+        </div>
+        <div class="item item-elephant">
+          <img src="./static/images/upscale_elephant.png"
+          class="interpolation-image"/>
+        </div>
+        <div class="item item-cat">
+          <img src="./static/images/upscale_cat.png"
+          class="interpolation-image"/>
+        </div>
+        <div class="item item-pancake">
+          <img src="./static/images/upscale_pancake.png"
+          class="interpolation-image"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-		<hr>
-	 		<center><h1>3-Minute Video Intro of Our Paper (CVPR 2023)</h1></center>
-        <table align="center" width="700px">
-            <tbody><tr>
 
-                    <td align="center" width="700px">
-			<center>
-			    <iframe width="1120" height="630" src="https://www.youtube.com/embed/0elW11wRNpg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </center>
-                </td>
-        </tr></tbody></table>
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            The recent success of text-to-image synthesis has taken the world by storm and captured the general public's imagination.
+            From a technical standpoint, it also marked a drastic change in the favored architecture to design generative image models.
+            GANs used to be the de facto choice, with techniques like StyleGAN. With DALL&#183;E 2, auto-regressive and diffusion models became the new standard for large-scale generative models overnight.
+            This rapid shift raises a fundamental question: can we scale up GANs to benefit from large datasets like LAION? 
+            We find that na&#207;vely increasing the capacity of the StyleGAN architecture quickly becomes unstable.
+            We introduce GigaGAN, a new GAN architecture that far exceeds this limit, demonstrating GANs as a viable option for text-to-image synthesis.
+            GigaGAN offers three major advantages. First, it is orders of magnitude faster at inference time, taking only 0.13 seconds to synthesize a 512px image.
+            Second, it can synthesize high-resolution images, for example, 16-megapixel pixels in 3.67 seconds.
+            Finally, GigaGAN supports various latent space editing applications such as latent interpolation, style mixing, and vector arithmetic operations.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
 
-        <hr>
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
 
-	 		<center><h1>Super-Resolution using GigaGAN</h1></center>
-        <table align="center" width="700px">
-            <tbody><tr>
 
-                    <td align="center" width="700px">
-			<center>
-			    <img class="rounded" src = "./index_files/dalle2_upsampled.png" width="1200px"></img>
-				</center>
-                </td>
-        </tr></tbody></table>
 
-        <hr>
 
-		<center><h1>Disentangled Latent Space of GigaGAN</h1></center>
-        <table align="center" width="700px">
-            <tbody><tr>
+<section class="section">
+  <div class="container is-max-desktop">
 
-                    <td align="center" width="700px">
-			<center>
-			    <img class="rounded" src = "./index_files/style_swapping.png" width="1200px"></img>
-                </center>
-                </td>
-        </tr></tbody></table>
+    <div class="columns is-centered">
 
-        <hr>
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Visual Effects</h2>
+          <p>
+            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
+            would be impossible without nerfies since it would require going through a wall.
+          </p>
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/dollyzoom-stacked.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
 
-		<center><h1>More High-Resolution Images from GigaGAN</h1></center>
-        <table align="center" width="700px">
-            <tbody><tr>
-                    <td align="center" width="700px">
-			<center>
-			    <img class="rounded" src = "./" width="1200px"></img>
-                </center>
-                </td>
-        </tr></tbody></table>
+      <!-- Matting. -->
+      <div class="column">
+        <h2 class="title is-3">GAN-based upscaling</h2>
+        <div class="columns is-centered">
+          <div class="column content">
+            <p>
+              As a byproduct of our method, we can also solve the matting problem by ignoring
+              samples that fall outside of a bounding box during rendering.
+            </p>
+            <img src="./static/images/iguana.png"
+                 class="interpolation-image"
+                 alt="Interpolation end reference image."/>
+          </div>
 
-        <hr>
+        </div>
+      </div>
+    </div>
+    <!--/ Matting. -->
 
-  		  <table align=center width=500 px>
-	 		<center><h1>Paper</h1></center>
-  			  <tr>
-				  <td><a href=""><img class="layered-paper-big" style="height:175px" src="./index_files/page1.png"/></a></td>
-				  <td><span style="font-size:12pt">Minguk Kang,  Taesung Park, Jun-Yan Zhu, Richard Zhang, Jaesik Park, Eli Shechtman, Sylvain Paris,</span><br>
-				  <b><span style="font-size:12pt">Scaling up GANs for Text-to-Image Synthesis,</b></span><br>
-				  <span style="font-size:12pt">CVPR, 2023.</span>
-				  </td>
-  	              </td>
-              </tr>
-  		  </table>
-		  <br>
-		  <table align=center width=600px>
-			  <tr>
-				<td><span style="font-size:14pt"><center>
-					<a href="https://arxiv.org/abs/2007.00653">[Paper]</a> |
-					<a href="./index_files/bibtex_neurips2020.txt">[Bibtex]</a>
-  	            </center></td>
-              </tr>
-  		  </table>
-  		  <br>
-  		  <hr>
 
-  		  <table align=center width=1100px>
-  			  <tr>
-  	              <td width=400px>
-  					<left>
-	  		  <center><h1>Acknowledgements</h1></center>
-We thank <a href="https://scholar.google.com/citations?user=MqWYTj0AAAAJ&hl=en" target="_blank">Nicholas Kolkin</a> for the helpful discussion on the automated content and style evaluation. We thank Jeongo Seo and <a href="https://yoseobkim.github.io/" target="_blank">Yoseob Kim</a> for advice on the user interface. We thank <a href="https://ssnl.github.io/" target="_blank">Tongzhou Wang</a>, <a href="https://www.wpeebles.com/" target="_blank">William (Bill) Peebles</a>, and <a href="https://scholar.google.com/citations?hl=en&user=a7drwRMAAAAJ&view_op=list_works" target="_blank">Yu Sun</a> for the discussion about disentanglement. Taesung Park is supported by a Samsung Scholarship and an Adobe Research Fellowship, and much of this work was done as an Adobe Research intern. This research was supported in part by an Adobe gift.
-			</left>
-		</td>
-			 </tr>
-		</table>
+    <!-- Latent space editing applications -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Latent space editing applications</h2>
 
-		<br><br>
+        <!-- Prompt Interpolation image -->
+        <h3 class="title is-4">1. Prompt interpolation</h3>
+        <div class="content has-text-justified">
+          <p>
+            Using GigaGAN, 
+          </p>
+        </div>
+        <div class="content has-text-centered">
+            <img src="./static/images/interpolation_house.png"
+                 class="interpolation-image"
+                 alt="Interpolation end reference image."/>
+        </div>
+        <!-- Prompt Interpolation image -->
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75863369-5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+        <!-- Prompt mixing -->
+        <h3 class="title is-4">2. Prompt mixing</h3>
+        <div class="content has-text-justified">
+          <p>
+            Using GigaGAN, 
+          </p>
+        </div>
+        <div class="content has-text-centered">
+            <img src="./static/images/prompt_mixing.png"
+                 class="interpolation-image"
+                 alt="Interpolation end reference image."/>
+        </div>
+        <!-- Prompt mixing -->
 
-  gtag('config', 'UA-75863369-5');
-</script>
- -->
+        <!-- Style swapping -->
+        <h3 class="title is-4">3. Coarse-to-fine sytle swapping</h3>
+        <div class="content has-text-justified">
+          <p>
+            Using GigaGAN, 
+          </p>
+        </div>
+        <div class="content has-text-centered">
+            <img src="./static/images/style_swapping.png"
+                 class="interpolation-image"
+                 alt="Interpolation end reference image."/>
+        </div>
+        <!-- Style swapping -->
 
+      </div>
+    </div>
+    <!--/ Animation. -->
+
+
+    <!-- Concurrent Work. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Acknowledgements</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            We thank Simon Niklaus, Alexandru Chiculita, and Markus Woodson for building the distributed training pipeline. We thank Nupur Kumari, Gaurav Parmar, Bill Peebles, Phillip Isola, Alyosha Efros, and Joonghyuk Shin for their helpful comments.
+            We also want to thank Chenlin Meng, Chitwan Saharia, and Jiahui Yu for answering many questions about their fantastic work. We thank Kevin Duarte for discussions regarding upsampling beyond 4K.
+            Part of this work was done while Minguk Kang was an intern at Adobe Research.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Concurrent Work. -->
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{kang2023gigagan,
+  author    = {Kang, Minguk and Zhu, Jun-Yan and Zhang, Richard and Park, Jaesik and Shechtman, Eli and Paris, Sylvain and Park, Taesung},
+  title     = {Scaling up GANs for Text-to-Image Synthesis},
+  journal   = {arXiv preprint arXiv:xxxx.xxxxx},
+  year      = {2023},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website adapted from the following <a href="https://github.com/nerfies/nerfies.github.io">source code</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
