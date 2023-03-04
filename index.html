@@ -132,7 +132,7 @@
       <h2 class="title is-3">Giga-scale GAN for Text-to-Image Synthesis</h2>
       <img src="./static/images/Text2img.png">
       <h2 class="subtitle has-text-centered">
-        GigaGAN can synthesize 16-megapixel pixels in 3.67 seconds.
+        We achieve stable and scalable training of a 1B parameter GAN (GigaGAN) on LAION-2B dataset.
       </h2>
     </div>
   </div>
@@ -169,6 +169,10 @@
           class="interpolation-image"/>
         </div>
       </div>
+      <h2 class="subtitle has-text-justified">
+        Our GigaGAN upsampler can be used as an efficient, higher-quality upsampler for a diffusion-based text-to-image generator as well as a real-world image. 
+        GigaGAN can synthesize ultra high-res images at 4k resolution in 3.66 seconds.
+      </h2>
     </div>
   </div>
 </section>
@@ -189,7 +193,7 @@
             We find that na&#207;vely increasing the capacity of the StyleGAN architecture quickly becomes unstable.
             We introduce GigaGAN, a new GAN architecture that far exceeds this limit, demonstrating GANs as a viable option for text-to-image synthesis.
             GigaGAN offers three major advantages. First, it is orders of magnitude faster at inference time, taking only 0.13 seconds to synthesize a 512px image.
-            Second, it can synthesize high-resolution images, for example, 16-megapixel pixels in 3.67 seconds.
+            Second, it can synthesize high-resolution images, for example, 16-megapixel pixels in 3.66 seconds.
             Finally, GigaGAN supports various latent space editing applications such as latent interpolation, style mixing, and vector arithmetic operations.
           </p>
         </div>
@@ -202,7 +206,7 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Video</h2>
         <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+          <iframe src="https://www.youtube.com/embed/haIZPMBP-40"
                   frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
       </div>
@@ -210,9 +214,6 @@
     <!--/ Paper video. -->
   </div>
 </section>
-
-
-
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -222,13 +223,13 @@
       <!-- Visual Effects. -->
       <div class="column">
         <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
+          <h2 class="title is-3">Intra-prompt interpolation</h2>
           <p>
             Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
             would be impossible without nerfies since it would require going through a wall.
           </p>
           <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
+            <source src="./static/videos/"
                     type="video/mp4">
           </video>
         </div>
@@ -237,16 +238,17 @@
 
       <!-- Matting. -->
       <div class="column">
-        <h2 class="title is-3">GAN-based upscaling</h2>
+        <h2 class="title is-3">Inter-prompt interpolation</h2>
         <div class="columns is-centered">
           <div class="column content">
             <p>
               As a byproduct of our method, we can also solve the matting problem by ignoring
               samples that fall outside of a bounding box during rendering.
             </p>
-            <img src="./static/images/iguana.png"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
+            <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/"
+                      type="video/mp4">
+            </video>
           </div>
 
         </div>
@@ -258,13 +260,57 @@
     <!-- Latent space editing applications -->
     <div class="columns is-centered">
       <div class="column is-full-width">
+        <h2 class="title is-3">GigaGAN architecture</h2>
+
+        <!-- Prompt Interpolation image -->
+        <h3 class="title is-4">1. GigaGAN generator</h3>
+        <div class="content has-text-justified">
+          <p>
+            We extract text embeddings using a pretrained CLIP model and a learned encoder <b>T</b>.
+            The local text descriptors are fed to the generator using cross-attention.
+            The global text descriptor, along with a latent code <b>z</b>, is fed to a style mapping network <b>M</b> to produce style code <b>w</b>.
+            The style code modulates the main generator using our style-adaptive kernel selection, shown on the right.
+            The generator outputs an image pyramid by converting the intermediate features into RGB images. 
+          </p>
+        </div>
+        <div class="content has-text-centered">
+            <img src="./static/images/G_architecture.png"
+                 class="interpolation-image"
+                 alt="Interpolation end reference image."/>
+        </div>
+        <!-- Prompt Interpolation image -->
+
+        <!-- Prompt Interpolation image -->
+        <h3 class="title is-4">2. GigaGAN discriminator</h3>
+        <div class="content has-text-justified">
+          <p>
+            Our discriminator consists of two branches for processing the image and the text conditioning.
+            The text branch processes the text similar to the generator. 
+            The image branch receives an image pyramid and makes independent predictions for each image scale.
+            Moreover, the predictions are made at all subsequent scales of the downsampling layers.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+            <img src="./static/images/D_architecture1.png"
+                 class="interpolation-image"
+                 alt="Interpolation end reference image."/>
+        </div>
+        <!-- Prompt Interpolation image -->
+
+      </div>
+    </div>
+
+    <!-- Latent space editing applications -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
         <h2 class="title is-3">Latent space editing applications</h2>
 
         <!-- Prompt Interpolation image -->
         <h3 class="title is-4">1. Prompt interpolation</h3>
         <div class="content has-text-justified">
           <p>
-            Using GigaGAN, 
+            GigaGAN enables smooth interpolation between prompts, as shown in the interpolation grid.
+            The four corners are generated from the same latent z but with different text prompts.
           </p>
         </div>
         <div class="content has-text-centered">
@@ -278,7 +324,8 @@
         <h3 class="title is-4">2. Prompt mixing</h3>
         <div class="content has-text-justified">
           <p>
-            Using GigaGAN, 
+            GigaGAN retains a disentangled latent space, enabling us to combine the coarse style of one sample with the fine style of another.
+            Moreover, GigaGAN can directly control the style with text prompts.
           </p>
         </div>
         <div class="content has-text-centered">
@@ -292,7 +339,7 @@
         <h3 class="title is-4">3. Coarse-to-fine sytle swapping</h3>
         <div class="content has-text-justified">
           <p>
-            Using GigaGAN, 
+            Our GAN-based architecture retains a disentangled latent space, enabling us to blend the coarse style of one sample with the fine style of another.
           </p>
         </div>
         <div class="content has-text-centered">
