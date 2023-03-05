@@ -24,6 +24,7 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script src="./static/js/magnifier.js"></script>
 </head>
 
 
@@ -134,28 +135,24 @@
     <div class="container is-max-desktop has-text-centered">
       <h2 class="title is-3">Upscaling to 16-megapixel photos with GigaGAN</h2>
       <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-iguana">
-          <img src="./static/images/iguana.png"
+        <div class="item item-iguana img-magnifier-container">
+          <img id="myiguana" src="./static/images/iguana.png"
           class="interpolation-image"/>
         </div>
-        <div class="item item-dog">
-          <img src="./static/images/upscale_dog.png"
+        <div class="item item-dog img-magnifier-container">
+          <img id="mydog" src="./static/images/upscale_dog.png"
           class="interpolation-image"/>
         </div>
-        <div class="item item-painter">
-          <img src="./static/images/upscale_painter.png"
+        <div class="item item-elephant img-magnifier-container">
+          <img id="myelephant" src="./static/images/upscale_elephant.png"
           class="interpolation-image"/>
         </div>
-        <div class="item item-elephant">
-          <img src="./static/images/upscale_elephant.png"
+        <div class="item item-cat img-magnifier-container">
+          <img id="mycat" src="./static/images/upscale_cat.png"
           class="interpolation-image"/>
         </div>
-        <div class="item item-cat">
-          <img src="./static/images/upscale_cat.png"
-          class="interpolation-image"/>
-        </div>
-        <div class="item item-pancake">
-          <img src="./static/images/upscale_pancake.png"
+        <div class="item item-pancake img-magnifier-container">
+          <img id="mypancake" src="./static/images/upscale_pancake.png"
           class="interpolation-image"/>
         </div>
       </div>
@@ -274,7 +271,7 @@
                 <img src="./static/images/victorian_mansion.png"
                 class="interpolation-image"/>
               </div>
-              <div class="item item-painter">
+              <div class="item item-house">
                 <img src="./static/images/interpolation_house.png"
                 class="interpolation-image"/>
               </div>
@@ -377,6 +374,17 @@
     </div>
   </div>
 </footer>
+
+<script>
+  /* Initiate Magnify Function
+  with the id of the image, and the strength of the magnifier glass:*/
+  magnify("myiguana", 0);
+  magnify("myiguana", 3);
+  magnify("mydog", 3);
+  magnify("myelephant", 3);
+  magnify("mycat", 3);
+  magnify("mypancake", 3);
+</script>
 
 </body>
 </html>

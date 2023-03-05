@@ -159,3 +159,29 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+* {box-sizing: border-box;}
+
+.img-magnifier-container {
+  position:relative;
+}
+
+.img-magnifier-glass {
+  position: absolute;
+  border: 3px solid #000;
+  border-radius: 0%;
+  cursor: none;
+  /*Set the size of the magnifier glass:*/
+  width: 200px;
+  height: 200px;
+}
+
+.img-magnifier-glass_init {
+  position: absolute;
+  border: 0px solid #000;
+  border-radius: 50%;
+  cursor: none;
+  /*Set the size of the magnifier glass:*/
+  width: 0px;
+  height: 0px;
+}
