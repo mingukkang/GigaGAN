@@ -99,6 +99,10 @@ body {
     border-radius: 10px !important;
 }
 
+.publication-image-half {
+  width: 50;
+}
+
 .publication-video iframe {
     position: absolute;
     top: 0;
