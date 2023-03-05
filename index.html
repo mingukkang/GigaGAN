@@ -117,12 +117,34 @@
   </div>
 </section>
 
-<section class="hero teaser">
-  <div class="container is-max-desktop has-text-centered">
-    <div class="hero-body">
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
       <h2 class="title is-3">Giga-scale GAN for Text-to-Image Synthesis</h2>
-      <img src="./static/images/Text2img.png">
-      <h2 class="subtitle has-text-centered">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-t2i0 img-magnifier-container">
+          <img id="myt2i0" src="./static/images/Text2img.png"
+          class="interpolation-image"/>
+        </div>
+        <div class="item item-t2i1 img-magnifier-container">
+          <img id="myt2i1" src="./static/images/Text2img.png"
+          class="interpolation-image"/>
+        </div>
+        <div class="item item-t2i2 img-magnifier-container">
+          <img id="myt2i2" src="./static/images/Text2img.png"
+          class="interpolation-image"/>
+        </div>
+        <div class="item item-t2i3 img-magnifier-container">
+          <img id="myt2i3" src="./static/images/Text2img.png"
+          class="interpolation-image"/>
+        </div>
+        <div class="item item-t2i5 img-magnifier-container">
+          <img id="myt2i4" src="./static/images/Text2img.png"
+          class="interpolation-image"/>
+        </div>
+      </div>
+      <h2 class="subtitle has-text-justified">
         We achieve stable and scalable training of a 1B parameter GAN (GigaGAN) on LAION-2B dataset.
       </h2>
     </div>
