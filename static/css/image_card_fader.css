@@ -7,7 +7,7 @@ justify-content: center;
 }
   
 .flip-card-container {
-margin: 0 10px;
+margin: 0 5px;
 }
   
 .flip-card {
@@ -16,10 +16,10 @@ perspective: 1000px;
   
 .flip-card-inner {
     position: relative;
-    width: 330px;
-    height: 330px;
+    width: 1000px;
+    height: 215px;
     text-align: center;
-    transition: transform 0.6s;
+    transition: transform 1.5s;
     transform-style: preserve-3d;
 }
   
