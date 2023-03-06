@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/tab_gallery.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
@@ -25,7 +26,9 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
-  <script src="./static/js/magnifier.js"></script>
+  
+
+    
 </head>
 
 
@@ -124,34 +127,69 @@
     <div class="container is-max-desktop has-text-centered">
       <h2 class="title is-3">Giga-scale GAN for Text-to-Image Synthesis</h2>
       <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-t2i0 img-magnifier-container">
+        <div class="item item-t2i0">
           <img id="myt2i0" src="./static/images/Text2img.png"
           class="interpolation-image"/>
         </div>
-        <div class="item item-t2i1 img-magnifier-container">
+        <div class="item item-t2i1">
           <img id="myt2i1" src="./static/images/Text2img2.png"
           class="interpolation-image"/>
         </div>
-        <div class="item item-t2i2 img-magnifier-container">
+        <div class="item item-t2i2">
           <img id="myt2i2" src="./static/images/Text2img.png"
           class="interpolation-image"/>
         </div>
       </div>
-      <h2 class="subtitle has-text-justified">
+      <p>
         We present a new GAN framework that can be trained for a general text-to-image synthesis task. 
         Our GigaGAN contains 1B parameters, and can generate 512px images in 0.13 second, and 4K images in 3.8 second.
-      </h2>
+      </p>
     </div>
   </div>
-</section>
 
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container is-max-desktop has-text-centered">
-      <h2 class="title is-3">Upscaling to 16-megapixel photos with GigaGAN</h2>
-      <div class="juxtapose" data-startingposition="30%" data-animate="true">
-        <img src="./static/images/iguana_input.png" data-label="Input" alt="Input">
-        <img src="./static/images/iguana_output.png" data-label="Upsampled by GigaGAN (4K)" alt="GigaGAN">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Disentangled Prompt Interpolation</h2>
+    <p>
+      GigaGAN comes with a disentangled, continuous, and controllabe latent space.
+      In particular, it can achieve layout-preserving fine style control by applying a different prompt at fine scales. 
+    </p>
+    <br>
+    
+    <div class="columns is-centered">
+
+      
+      <!-- Visual Effects. -->
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/teddybear_interpolation.mp4"
+                    type="video/mp4">
+          </video>
+          <p>
+            <b>Changing texture.</b>
+            At coarse layers, we use the prompt <span style="font-family:menlo;size:0.8;">"A teddy bear on tabletop"</span> to fix the layout. Then at fine layers, we use <span style="font-family:menlo;size:0.8;">"A teddy bear with the texture of [fleece, crochet, denim, fur] on tabletop"</span>.
+          </p>
+          
+        </div>
+      </div>
+      <!--/ Visual Effects. -->
+
+      <!-- Matting. -->
+      <div class="column">
+        <div class="columns is-centered">
+          <div class="column content">
+            <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/house_interpolation.mp4"
+                      type="video/mp4">
+            </video>
+            <p>
+              <b>Changing style.</b>
+              At coarse layers, we use the prompt <span style="font-family:menlo;size:0.8;">"A mansion"</span> to fix the layout. Then at fine layers, we use <span style="font-family:menlo;size:0.8;">"A [modern, Victorian] mansion in [sunny day, dramatic sunset]"</span>
+            </p>
+            
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
@@ -161,34 +199,66 @@
   <div class="hero-body">
     <div class="container is-max-desktop has-text-centered">
       <h2 class="title is-3">Upscaling to 16-megapixel photos with GigaGAN</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-iguana img-magnifier-container">
-          <img id="myiguana" src="./static/images/iguana.png"
-          class="interpolation-image"/>
+      <!-- The expanding image container -->
+      <div class="tab_container">
+        <!-- Close the image -->
+        <!-- <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span> -->
+
+        <!-- Expanded image -->
+        <div id="juxtapose-embed" data-startingposition="30%" data-animate="true">
         </div>
-        <div class="item item-dog img-magnifier-container">
-          <img id="mydog" src="./static/images/upscale_dog.png"
-          class="interpolation-image"/>
+
+        <div>
+          <div id="juxtapose-hidden"></div>
         </div>
-        <div class="item item-elephant img-magnifier-container">
-          <img id="myelephant" src="./static/images/upscale_elephant.png"
-          class="interpolation-image"/>
+        
+        <!-- Image text -->
+        <div id="imgtext"></div>
+      </div>
+
+      <!-- The grid: four columns -->
+      <div class="tab_row">
+        <div class="tab_column">
+          <img src="./static/images/iguana_input.jpg" onclick="tab_gallery_click('iguana');">
+
         </div>
-        <div class="item item-cat img-magnifier-container">
-          <img id="mycat" src="./static/images/upscale_cat.png"
-          class="interpolation-image"/>
+        <div class="tab_column">
+          <img src="./static/images/dog_input.jpg"  onclick="tab_gallery_click('dog');">
         </div>
-        <div class="item item-pancake img-magnifier-container">
-          <img id="mypancake" src="./static/images/upscale_pancake.png"
-          class="interpolation-image"/>
+        <div class="tab_column">
+          <img src="./static/images/turtle_input.jpg" onclick="tab_gallery_click('turtle');">
+        </div>
+        <div class="tab_column">
+          <img src="./static/images/kitten_input.jpg"  onclick="tab_gallery_click('kitten');">
+        </div>
+        <div class="tab_column">
+          <img src="./static/images/guy_input.jpg"  onclick="tab_gallery_click('guy');">
+        </div>
+        <div class="tab_column">
+          <img src="./static/images/boy_input.jpg"  onclick="tab_gallery_click('boy');">
+        </div>
+        <div class="tab_column">
+          <img src="./static/images/horse_input.jpg"  onclick="tab_gallery_click('horse');">
+        </div>
+        <div class="tab_column">
+          <img src="./static/images/pancake_input.jpg"  onclick="tab_gallery_click('pancake');">
+        </div>
+        <div class="tab_column">
+          <img src="./static/images/elephant_input.jpg"  onclick="tab_gallery_click('elephant');">
+        </div>
+        <div class="tab_column">
+          <img src="./static/images/plant_input.jpg"  onclick="tab_gallery_click('plant');">
         </div>
       </div>
-      <h2 class="subtitle has-text-justified">
+
+      <p>
         Our GigaGAN framework can also be used to train an efficient, higher-quality upsampler. This can be applied to real images, or to the outputs of other text-to-image models like diffusion. GigaGAN can synthesize ultra high-res images at 4k resolution in 3.66 seconds.
-      </h2>
+      </p>
+      
     </div>
   </div>
 </section>
+
 
 
 <section class="section">
@@ -218,45 +288,10 @@
 </section>
 
 <section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-
-      <!-- Visual Effects. -->
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Intra-prompt interpolation</h2>
-          <p>
-            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-            would be impossible without nerfies since it would require going through a wall.
-          </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/teddybear_interpolation.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ Visual Effects. -->
-
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">Inter-prompt interpolation</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
-            </p>
-            <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/house_interpolation.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-
-        </div>
-      </div>
-    </div>
+  
     <!--/ Matting. -->
-
+    <div class="container is-max-desktop">
+    
     <!-- Latent space editing applications -->
     <div class="columns is-centered">
       <div class="column is-full-width">
@@ -428,18 +463,74 @@
   </div>
 </footer>
 
-<script>
-  /* Initiate Magnify Function
-  with the id of the image, and the strength of the magnifier glass:*/
-  magnify("myiguana", 0);
-  magnify("myiguana", 3);
-  magnify("mydog", 3);
-  magnify("myelephant", 3);
-  magnify("mycat", 3);
-  magnify("mypancake", 3);
-</script>
 
 <script src="juxtapose/js/juxtapose.js"></script>
+
+<script>
+
+var slider;
+let origImages = [
+  {"src": "./static/images/iguana_input.jpg", "label": "Input (128px)",},
+  {"src": "./static/images/iguana_output.jpg", "label": "Upsampled by GigaGAN (4K)",}
+];
+let origOptions = {
+    "makeResponsive": true,
+    "showLabels": true,
+    "mode": "horizontal",
+    "showCredits": true,
+    "animate": true,
+    "startingPosition": "50"
+};
+
+const juxtaposeSelector = "#juxtapose-embed";
+const transientSelector = "#juxtapose-hidden";
+
+
+function tab_gallery_click(name) {
+  // Get the expanded image
+  let inputImage = {
+    label: "Input (128px)",
+  };
+  let outputImage = {
+    label: "Upsampled by GigaGAN (4K)",
+  };
+
+  inputImage.src = "./static/images/".concat(name, "_input.jpg")
+  outputImage.src = "./static/images/".concat(name, "_output.jpg")
+
+  let images = [inputImage, outputImage];
+  let options = slider.options;
+  options.callback = function(obj) {
+      var newNode = document.getElementById(obj.selector.substring(1));
+      var oldNode = document.getElementById(juxtaposeSelector.substring(1));
+      console.log(obj.selector.substring(1));
+      console.log(newNode.children[0]);
+      oldNode.replaceChild(newNode.children[0], oldNode.children[0]);
+      //newNode.removeChild(newNode.children[0]);
+      
+  };
+  
+  slider = new juxtapose.JXSlider(transientSelector, images, options);
+};
+
+
+
+(function() {
+    slider = new juxtapose.JXSlider(
+        juxtaposeSelector, origImages, origOptions);
+    //document.getElementById("left-button").onclick = replaceLeft;
+    //document.getElementById("right-button").onclick = replaceRight;
+})();
+  // Get the image text
+  var imgText = document.getElementById("imgtext");
+  // Use the same src in the expanded image as the image being clicked on from the grid
+  // expandImg.src = imgs.src;
+  // Use the value of the alt attribute of the clickable image as text inside the expanded image
+  imgText.innerHTML = name;
+  // Show the container element (hidden with CSS)
+  // expandImg.parentElement.style.display = "block";
+
+</script>
 
 </body>
 </html>
