@@ -113,7 +113,8 @@
       <h2 class="title is-3">Large-scale GAN for Text-to-Image Synthesis</h2>
       <div class="content has-text-justified">
         <p>
-          Can GANs also be trained on a large dataset for a general text-to-image synthesis task?
+          <!--<b>A large 1B-parameter GAN model for text-to-image, with a competitive FID, disentangled latent space, and a fast upsampler for generating 4K outputs.</b>-->
+          <b>Can GANs also be trained on a large dataset for a general text-to-image synthesis task?</b> We present our 1B-parameter GigaGAN, achieving lower FID than Stable Diffusion v1.5, DALL·E 2, and Parti-750M. It generates 512px outputs at 0.13s, orders of magnitude faster than diffusion and autoregressive models, and inherits the disentangled, continuous, and controllable latent space of GANs. We also train a fast, 64px or 128 --> 4K text-to-image upsampler.
           <br> 
         </p>
       </div>
@@ -131,19 +132,17 @@
           class="interpolation-image"/>
         </div>
       </div>
-      <p>
-        We present a new GAN framework that can be trained for a general text-to-image synthesis task. 
-        Our GigaGAN contains 1B parameters, and can generate 512px images in 0.13 second, and 4K images in 3.8 second.
-      </p>
     </div>
   </div>
 
-  <div class="container is-max-desktop">
+  <div class="container is-max-desktop has-text-centered">
     <h2 class="title is-3">Disentangled Prompt Interpolation</h2>
-    <p>
-      GigaGAN comes with a disentangled, continuous, and controllabe latent space.
-      <br>In particular, it can achieve layout-preserving fine style control by applying a different prompt at fine scales. 
-    </p>
+    <div class="has-text-justified">
+      <p>
+        GigaGAN comes with a disentangled, continuous, and controllable latent space.
+        <br>In particular, it can achieve layout-preserving fine style control by applying a different prompt at fine scales. 
+      </p>
+    </div>
     <br>
     
     <div class="columns is-centered">
@@ -156,10 +155,14 @@
             <source src="./static/videos/teddybear_interpolation.mp4"
                     type="video/mp4">
           </video>
+          <div class="has-text-justified">
           <p>
+            
             <b>Changing texture with prompting.</b>
             At coarse layers, we use the prompt <span style="font-family:menlo;size:0.8;">"A teddy bear on tabletop"</span> to fix the layout. Then at fine layers, we use <span style="font-family:menlo;size:0.8;">"A teddy bear with the texture of [fleece, crochet, denim, fur] on tabletop"</span>.
           </p>
+          </div>
+          
           
         </div>
       </div>
@@ -173,10 +176,12 @@
               <source src="./static/videos/house_interpolation.mp4"
                       type="video/mp4">
             </video>
+            <div class="has-text-justified">
             <p>
               <b>Changing style with prompting.</b>
               At coarse layers, we use the prompt <span style="font-family:menlo;size:0.8;">"A mansion"</span> to fix the layout. Then at fine layers, we use <span style="font-family:menlo;size:0.8;">"A [modern, Victorian] mansion in [sunny day, dramatic sunset]"</span>
             </p>
+            </div>
             
           </div>
 
@@ -190,6 +195,11 @@
   <div class="hero-body">
     <div class="container is-max-desktop has-text-centered">
       <h2 class="title is-3">Upscaling to 16-megapixel photos with GigaGAN</h2>
+      <div class="has-text-justified">
+      <p>
+        Our GigaGAN framework can also be used to train an efficient, higher-quality upsampler. This can be applied to real images, or to the outputs of other text-to-image models like diffusion. GigaGAN can synthesize ultra high-res images at 4k resolution in 3.66 seconds.
+      </p>
+      </div>
       <!-- The expanding image container -->
       <div class="tab_container">
         <!-- Close the image -->
@@ -242,9 +252,7 @@
         </div>
       </div>
 
-      <p>
-        Our GigaGAN framework can also be used to train an efficient, higher-quality upsampler. This can be applied to real images, or to the outputs of other text-to-image models like diffusion. GigaGAN can synthesize ultra high-res images at 4k resolution in 3.66 seconds.
-      </p>
+      
       
     </div>
   </div>
@@ -286,31 +294,33 @@
     <!-- Latent space editing applications -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">GigaGAN architecture</h2>
+        <h2 class="title is-3 has-text-centered">GigaGAN architecture</h2>
 
         <!-- Prompt Interpolation image -->
-        <h3 class="title is-4">1. GigaGAN generator</h3>
+        <h3 class="title is-4">GigaGAN generator</h3>
+        
+        <div class="content has-text-centered">
+            <img src="./static/images/G_architecture.jpg">
+        </div>
         <div class="content has-text-justified">
           <p>
             GigaGAN generator consists of a <b>text encoding branch</b>, <b>style mapping network</b>, <b>multi-scale synthesis network</b>, augmented by <b>stable attention</b> and <b>adaptive kernel selection</b>. 
             In the <b>text encoding branch</b>, we first extract text embeddings using a pretrained CLIP model and a learned attention layers <b>T</b>. The embedding is passed to the <b>style mapping network M</b> to produce the style vector <b>w</b>, similar to StyleGAN. Now the <b>synthesis network</b> uses the style code as modulation and the text embeddings as attention to produce an image pyramid. Furthermore, we introduce <b>sample-adaptive kernel selection</b> to adaptively choose convolution kernels based on the input text conditioning.
           </p>
         </div>
-        <div class="content has-text-centered">
-            <img src="./static/images/G_architecture.jpg">
-        </div>
         <!-- Prompt Interpolation image -->
 
         <!-- Prompt Interpolation image -->
-        <h3 class="title is-4">2. GigaGAN discriminator</h3>
+        <h3 class="title is-4">GigaGAN discriminator</h3>
+        
+        <div class="content has-text-centered">
+            <img src="./static/images/D_architecture.jpg" width="50%"">
+        </div>
         <div class="content has-text-justified">
           <p>
             Similar to the generator, our discriminator consists of two branches for processing the image and the text conditioning. The <b>text branch</b> processes the text similar to the generator. 
             The <b>image branch</b> receives an image pyramid and makes <b>independent</b> predictions for each image scale. Moreover, the predictions are made at all subsequent scales of the downsampling layers. We also employ additional losses to encourage effective convergence. Please see our paper for full details.
           </p>
-        </div>
-        <div class="content has-text-centered">
-            <img src="./static/images/D_architecture.jpg" width="50%"">
         </div>
         <!-- Prompt Interpolation image -->
 
@@ -319,11 +329,11 @@
 
     <!-- Latent space editing applications -->
     <div class="columns is-centered">
-      <div class="column is-full-width">
+      <div class="column is-full-width has-text-centered">
         <h2 class="title is-3">Latent space editing applications</h2>
 
         <!-- Prompt Interpolation image -->
-        <h3 class="title is-4">1. Prompt interpolation</h3>
+        <h3 class="title is-4 has-text-justified">Prompt interpolation</h3>
         <div class="content has-text-justified">
           <p>
             GigaGAN enables smooth interpolation between prompts, as shown in the interpolation grid.
@@ -350,7 +360,7 @@
         <!-- Prompt Interpolation image -->
         
         <br>
-        <h3 class="title is-4">2. Prompt mixing</h3>
+        <h3 class="title is-4 has-text-justified">Disentangled prompt mixing</h3>
         <div class="content has-text-justified">
           <p>
             GigaGAN retains a disentangled latent space, enabling us to combine the coarse style of one sample with the fine style of another.
@@ -365,7 +375,7 @@
         <!-- Prompt mixing -->
 
         <!-- Style swapping -->
-        <h3 class="title is-4">3. Coarse-to-fine sytle swapping</h3>
+        <h3 class="title is-4 has-text-justified">Coarse-to-fine sytle swapping</h3>
         <div class="content has-text-justified">
           <p>
             Our GAN-based architecture retains a disentangled latent space, enabling us to blend the coarse style of one sample with the fine style of another.
@@ -396,7 +406,7 @@
     <!-- Concurrent Work. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Acknowledgements</h2>
+        <h2 class="title is-3 has-text-centered">Acknowledgements</h2>
 
         <div class="content has-text-justified">
           <p>
