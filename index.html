@@ -81,7 +81,7 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
+                <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -90,33 +90,13 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
+                <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
                   </span>
                   <span>arXiv</span>
                 </a>
-              </span>
-              <!-- Video Link. -->
-              <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
               </span>
             </div>
           </div>
@@ -130,7 +110,7 @@
 <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container is-max-desktop has-text-centered">
-      <h2 class="title is-3">Giga-scale GAN for Text-to-Image Synthesis</h2>
+      <h2 class="title is-3">Large-scale GAN for Text-to-Image Synthesis</h2>
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-t2i0">
           <img id="myt2i0" src="./static/images/Text2img.png"
@@ -152,7 +132,7 @@
     <h2 class="title is-3">Disentangled Prompt Interpolation</h2>
     <p>
       GigaGAN comes with a disentangled, continuous, and controllabe latent space.
-      In particular, it can achieve layout-preserving fine style control by applying a different prompt at fine scales. 
+      <br>In particular, it can achieve layout-preserving fine style control by applying a different prompt at fine scales. 
     </p>
     <br>
     
@@ -167,7 +147,7 @@
                     type="video/mp4">
           </video>
           <p>
-            <b>Changing texture.</b>
+            <b>Changing texture with prompting.</b>
             At coarse layers, we use the prompt <span style="font-family:menlo;size:0.8;">"A teddy bear on tabletop"</span> to fix the layout. Then at fine layers, we use <span style="font-family:menlo;size:0.8;">"A teddy bear with the texture of [fleece, crochet, denim, fur] on tabletop"</span>.
           </p>
           
@@ -184,7 +164,7 @@
                       type="video/mp4">
             </video>
             <p>
-              <b>Changing style.</b>
+              <b>Changing style with prompting.</b>
               At coarse layers, we use the prompt <span style="font-family:menlo;size:0.8;">"A mansion"</span> to fix the layout. Then at fine layers, we use <span style="font-family:menlo;size:0.8;">"A [modern, Victorian] mansion in [sunny day, dramatic sunset]"</span>
             </p>
             
@@ -302,17 +282,12 @@
         <h3 class="title is-4">1. GigaGAN generator</h3>
         <div class="content has-text-justified">
           <p>
-            We extract text embeddings using a pretrained CLIP model and a learned encoder <b>T</b>.
-            The local text descriptors are fed to the generator using cross-attention.
-            The global text descriptor, along with a latent code <b>z</b>, is fed to a style mapping network <b>M</b> to produce style code <b>w</b>.
-            The style code modulates the main generator using our style-adaptive kernel selection, shown on the right.
-            The generator outputs an image pyramid by converting the intermediate features into RGB images. 
+            GigaGAN generator consists of a <b>text encoding branch</b>, <b>style mapping network</b>, <b>multi-scale synthesis network</b>, augmented by <b>stable attention</b> and <b>adaptive kernel selection</b>. 
+            In the <b>text encoding branch</b>, we first extract text embeddings using a pretrained CLIP model and a learned attention layers <b>T</b>. The embedding is passed to the <b>style mapping network M</b> to produce the style vector <b>w</b>, similar to StyleGAN. Now the <b>synthesis network</b> uses the style code as modulation and the text embeddings as attention to produce an image pyramid. Furthermore, we introduce <b>sample-adaptive kernel selection</b> to adaptively choose convolution kernels based on the input text conditioning.
           </p>
         </div>
         <div class="content has-text-centered">
-            <img src="./static/images/G_architecture.png"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
+            <img src="./static/images/G_architecture.jpg">
         </div>
         <!-- Prompt Interpolation image -->
 
@@ -320,16 +295,12 @@
         <h3 class="title is-4">2. GigaGAN discriminator</h3>
         <div class="content has-text-justified">
           <p>
-            Our discriminator consists of two branches for processing the image and the text conditioning.
-            The text branch processes the text similar to the generator. 
-            The image branch receives an image pyramid and makes independent predictions for each image scale.
-            Moreover, the predictions are made at all subsequent scales of the downsampling layers.
+            Similar to the generator, our discriminator consists of two branches for processing the image and the text conditioning. The <b>text branch</b> processes the text similar to the generator. 
+            The <b>image branch</b> receives an image pyramid and makes <b>independent</b> predictions for each image scale. Moreover, the predictions are made at all subsequent scales of the downsampling layers. We also employ additional losses to encourage effective convergence. Please see our paper for full details.
           </p>
         </div>
         <div class="content has-text-centered">
-            <img src="./static/images/D_architecture1.png"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
+            <img src="./static/images/D_architecture.jpg" width="50%"">
         </div>
         <!-- Prompt Interpolation image -->
 
