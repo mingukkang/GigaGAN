@@ -18,6 +18,7 @@
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
+  <link rel="stylesheet" href="juxtapose/css/juxtapose.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -133,12 +134,24 @@
         </div>
       </div>
       <h2 class="subtitle has-text-justified">
-        We achieve stable and scalable training of a 1B parameter GAN (GigaGAN) on LAION-2B dataset.
+        We present a new GAN framework that can be trained for a general text-to-image synthesis task. 
+        Our GigaGAN contains 1B parameters, and can generate 512px images in 0.13 second, and 4K images in 3.8 second.
       </h2>
     </div>
   </div>
 </section>
 
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-3">Upscaling to 16-megapixel photos with GigaGAN</h2>
+      <div class="juxtapose" data-startingposition="30%" data-animate="true">
+        <img src="./static/images/iguana_input.png" data-label="Input" alt="Input">
+        <img src="./static/images/iguana_output.png" data-label="Upsampled by GigaGAN (4K)" alt="GigaGAN">
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="hero is-light is-small">
   <div class="hero-body">
@@ -167,8 +180,7 @@
         </div>
       </div>
       <h2 class="subtitle has-text-justified">
-        Our GigaGAN upsampler can be used as an efficient, higher-quality upsampler for a diffusion-based text-to-image generator as well as a real-world image. 
-        GigaGAN can synthesize ultra high-res images at 4k resolution in 3.66 seconds.
+        Our GigaGAN framework can also be used to train an efficient, higher-quality upsampler. This can be applied to real images, or to the outputs of other text-to-image models like diffusion. GigaGAN can synthesize ultra high-res images at 4k resolution in 3.66 seconds.
       </h2>
     </div>
   </div>
@@ -198,17 +210,6 @@
     </div>
     <!--/ Abstract. -->
 
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/haIZPMBP-40"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-    <!--/ Paper video. -->
   </div>
 </section>
 
@@ -225,7 +226,7 @@
             would be impossible without nerfies since it would require going through a wall.
           </p>
           <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/inter_prompt_video.mp4"
+            <source src="./static/videos/teddybear_interpolation.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -242,7 +243,7 @@
               samples that fall outside of a bounding box during rendering.
             </p>
             <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/inter_prompt_video.mp4"
+              <source src="./static/videos/house_interpolation.mp4"
                       type="video/mp4">
             </video>
           </div>
@@ -433,6 +434,8 @@
   magnify("mycat", 3);
   magnify("mypancake", 3);
 </script>
+
+<script src="juxtapose/js/juxtapose.js"></script>
 
 </body>
 </html>
