@@ -398,7 +398,41 @@
             </div>
           </div>
         </div>
-      <!-- Prompt Interpolation image -->
+    <!-- Latent space editing applications -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">More visuals</h2>
+        <!-- TAB:HUMAN->ROBOT -->
+          <tr>
+              <div class="d-flex justify-content-center">
+                  <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
+                        <div class="flip-card-front"> <img src="./static/images/zs_row1.png" style="width:1000px"> </div>
+                        <div class="flip-card-back"> <img src="./static/images/zs_row2.png" style="width:1000px"> </div>
+                  </div> </div> 
+                </div>
+                </div><br>
+          </tr>
+          <br><br>
+          <tr>
+            <div class="d-flex justify-content-center">
+              <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
+                    <div class="flip-card-front"> <img src="./static/images/zs_row1.png" style="width:1000px"> </div>
+                    <div class="flip-card-back"> <img src="./static/images/zs_row2.png" style="width:1000px"> </div>
+              </div> </div> 
+            </div>
+            </div><br>
+        </tr>
+        <br><br>
+          <tr>
+            <div class="d-flex justify-content-center">
+              <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
+                    <div class="flip-card-front"> <img src="./static/images/zs_row1.png" style="width:1000px"> </div>
+                    <div class="flip-card-back"> <img src="./static/images/zs_row2.png" style="width:1000px"> </div>
+              </div> </div> 
+            </div>
+            </div><br>
+        </tr>
+      </table><br><br><br>
       </div>
     </div>
     <!--/ Animation. -->
@@ -520,34 +554,33 @@ function tab_gallery_click(name) {
   // Show the container element (hidden with CSS)
   // expandImg.parentElement.style.display = "block";
 
-  $(".flip-card").mouseenter(function() {
-      console.log("fading in")
-      div_back = $(this).children().children()[1]
-      div_front = $(this).children().children()[0]
-      // console.log($(this).children("div.flip-card-back"))
-      console.log(div_back)
-      $(div_front).addClass("out");
-      $(div_front).removeClass("in");
+$(".flip-card").click(function() {
+            console.log("fading in")
+            div_back = $(this).children().children()[1]
+            div_front = $(this).children().children()[0]
+            // console.log($(this).children("div.flip-card-back"))
+            console.log(div_back)
+            $(div_front).addClass("out");
+            $(div_front).removeClass("in");
 
-      $(div_back).addClass("in");
-      $(div_back).removeClass("out");
+            $(div_back).addClass("in");
+            $(div_back).removeClass("out");
 
-  });
+});
 
-  $(".flip-card").mouseleave(function() {
-      console.log("fading in")
-      div_back = $(this).children().children()[1]
-      div_front = $(this).children().children()[0]
-      // console.log($(this).children("div.flip-card-back"))
-      console.log(div_back)
-      $(div_front).addClass("in");
-      $(div_front).removeClass("out");
+$(".flip-card").mouseleave(function() {
+            console.log("fading in")
+            div_back = $(this).children().children()[1]
+            div_front = $(this).children().children()[0]
+            // console.log($(this).children("div.flip-card-back"))
+            console.log(div_back)
+            $(div_front).addClass("in");
+            $(div_front).removeClass("out");
 
-      $(div_back).addClass("out");
-      $(div_back).removeClass("in");
+            $(div_back).addClass("out");
+            $(div_back).removeClass("in");
 
-  });
-
+});
 
 </script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->
