@@ -398,45 +398,49 @@
             </div>
           </div>
         </div>
-    <!-- Latent space editing applications -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">More visuals</h2>
-        <!-- TAB:HUMAN->ROBOT -->
-          <tr>
-              <div class="d-flex justify-content-center">
-                  <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
-                        <div class="flip-card-front"> <img src="./static/images/zs_row1.png" style="width:1000px"> </div>
-                        <div class="flip-card-back"> <img src="./static/images/zs_row2.png" style="width:1000px"> </div>
-                  </div> </div> 
-                </div>
-                </div><br>
-          </tr>
-          <br><br>
-          <tr>
-            <div class="d-flex justify-content-center">
-              <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
-                    <div class="flip-card-front"> <img src="./static/images/zs_row1.png" style="width:1000px"> </div>
-                    <div class="flip-card-back"> <img src="./static/images/zs_row2.png" style="width:1000px"> </div>
-              </div> </div> 
-            </div>
-            </div><br>
-        </tr>
-        <br><br>
-          <tr>
-            <div class="d-flex justify-content-center">
-              <div class="flip-card-container"> <div class="flip-card"> <div class="flip-card-inner">
-                    <div class="flip-card-front"> <img src="./static/images/zs_row1.png" style="width:1000px"> </div>
-                    <div class="flip-card-back"> <img src="./static/images/zs_row2.png" style="width:1000px"> </div>
-              </div> </div> 
-            </div>
-            </div><br>
-        </tr>
-      </table><br><br><br>
-      </div>
-    </div>
-    <!--/ Animation. -->
 
+    <!--/ Animation. -->
+    <br>
+    <h3 class="title is-3">Click images to see more examples</h3>
+    <div id="player">
+    </div>
+
+    <script>
+    class ClickListener {
+      constructor(images) {
+        this.rootElement = document.querySelector( "#player" );
+        this.element = document.createElement("img");
+        this.rootElement.appendChild(this.element);
+        this.images = images
+        this.idx = 0
+        this.init()
+      }
+    
+      init() {
+        this.element.src = this.images[this.idx]
+        this.element.style.width = `240px`;
+        this.element.style.height = `260px`;
+        this.element.onclick = this.nextImage.bind(this)
+      }
+    
+      nextImage() {
+        this.idx++;
+        if(this.idx >= this.images.length) {
+          this.idx = 0;
+        }
+        this.element.src = this.images[this.idx]
+        }
+      }
+    </script>
+
+    <script>
+    new ClickListener(['./static/images/car1.png', './static/images/car0.png', './static/images/car2.png', './static/images/car3.png', './static/images/car4.png'])
+    new ClickListener(['./static/images/galaxy1.png', './static/images/galaxy0.png', './static/images/galaxy2.png', './static/images/galaxy3.png', './static/images/galaxy4.png'])
+    new ClickListener(['./static/images/newton1.png', './static/images/newton0.png', './static/images/newton2.png', './static/images/newton3.png', './static/images/newton4.png',])
+    new ClickListener(['./static/images/sunset1.png', './static/images/sunset0.png', './static/images/sunset2.png', './static/images/sunset3.png', './static/images/sunset4.png'])
+    </script>
+    
+    <br>
     <!-- Concurrent Work. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
