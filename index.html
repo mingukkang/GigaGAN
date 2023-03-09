@@ -418,8 +418,34 @@
     
       init() {
         this.element.src = this.images[this.idx]
-        this.element.style.width = `240px`;
-        this.element.style.height = `260px`;
+        this.element.style.width = `320px`;
+        this.element.style.height = `320px`;
+        this.element.onclick = this.nextImage.bind(this)
+      }
+    
+      nextImage() {
+        this.idx++;
+        if(this.idx >= this.images.length) {
+          this.idx = 0;
+        }
+        this.element.src = this.images[this.idx]
+        }
+      }
+
+      class ClickListener1 {
+      constructor(images) {
+        this.rootElement = document.querySelector( "#player" );
+        this.element = document.createElement("img");
+        this.rootElement.appendChild(this.element);
+        this.images = images
+        this.idx = 0
+        this.init()
+      }
+    
+      init() {
+        this.element.src = this.images[this.idx]
+        this.element.style.width = `960px`;
+        this.element.style.height = `45px`;
         this.element.onclick = this.nextImage.bind(this)
       }
     
@@ -437,15 +463,14 @@
     new ClickListener(['./static/images/car0.jpg', './static/images/car1.jpg', './static/images/car2.jpg', './static/images/car3.jpg', './static/images/car4.jpg'])
     new ClickListener(['./static/images/galaxy0.jpg', './static/images/galaxy1.jpg', './static/images/galaxy2.jpg', './static/images/galaxy3.jpg', './static/images/galaxy4.jpg'])
     new ClickListener(['./static/images/newton0.jpg', './static/images/newton1.jpg', './static/images/newton2.jpg', './static/images/newton3.jpg', './static/images/newton4.jpg',])
+    new ClickListener1(['./static/images/caption0.png',])
     new ClickListener(['./static/images/sea0.jpg', './static/images/sea1.jpg', './static/images/sea2.jpg', './static/images/sea3.jpg', './static/images/sea4.jpg'])
     new ClickListener(['./static/images/candle0.jpg', './static/images/candle1.jpg', './static/images/candle2.jpg', './static/images/candle3.jpg', './static/images/candle4.jpg'])
-    new ClickListener(['./static/images/alps0.jpg', './static/images/alps1.jpg', './static/images/alps2.jpg', './static/images/alps3.jpg', './static/images/alps4.jpg'])
     new ClickListener(['./static/images/bread0.jpg', './static/images/bread1.jpg', './static/images/bread2.jpg', './static/images/bread3.jpg', './static/images/bread4.jpg',])
+    new ClickListener(['./static/images/alps0.jpg', './static/images/alps1.jpg', './static/images/alps2.jpg', './static/images/alps3.jpg', './static/images/alps4.jpg'])
     new ClickListener(['./static/images/light0.jpg', './static/images/light1.jpg', './static/images/light2.jpg', './static/images/light3.jpg', './static/images/light4.jpg'])
     new ClickListener(['./static/images/castle0.jpg', './static/images/castle1.jpg', './static/images/castle2.jpg', './static/images/castle3.jpg', './static/images/castle4.jpg'])
-    new ClickListener(['./static/images/earth0.jpg', './static/images/earth1.jpg', './static/images/earth2.jpg', './static/images/earth3.jpg', './static/images/earth4.jpg'])
-    new ClickListener(['./static/images/spring0.jpg', './static/images/spring1.jpg', './static/images/spring2.jpg', './static/images/spring3.jpg', './static/images/spring4.jpg',])
-    new ClickListener(['./static/images/animal0.jpg', './static/images/animal1.jpg', './static/images/animal2.jpg', './static/images/animal3.jpg', './static/images/animal4.jpg'])
+    new ClickListener1(['./static/images/caption2.png',])
     </script>
     
     <br>
