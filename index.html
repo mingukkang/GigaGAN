@@ -406,31 +406,47 @@
     </div>
 
     <script>
-    class ClickListener {
-      constructor(images) {
-        this.rootElement = document.querySelector( "#player" );
-        this.element = document.createElement("img");
-        this.rootElement.appendChild(this.element);
-        this.images = images
-        this.idx = 0
-        this.init()
-      }
-    
-      init() {
-        this.element.src = this.images[this.idx]
-        this.element.style.width = `320px`;
-        this.element.style.height = `320px`;
-        this.element.onclick = this.nextImage.bind(this)
-      }
-    
-      nextImage() {
-        this.idx++;
-        if(this.idx >= this.images.length) {
-          this.idx = 0;
+      class ClickListener {
+        constructor(images) {
+          this.rootElement = document.querySelector( "#player" );
+          this.element = document.createElement("img");
+          this.rootElement.appendChild(this.element);
+          this.images = images
+          this.idx = 0
+          this.k = 0;
+          this.init()
         }
-        this.element.src = this.images[this.idx]
+
+        init() {
+          this.element.src = this.images[this.idx]
+          this.element.style.width = `320px`;
+          this.element.style.height = `320px`;
+          this.element.onclick = this.nextImage.bind(this); 
         }
-      }
+
+        nextImage() {
+          this.idx++;
+          if(this.idx >= this.images.length) {
+            this.idx = 0;
+          }
+            setTimeout(this.identity(), 300); setTimeout(this.swapping(), 300);
+          }
+  
+
+        swapping() {
+          this.k += 90;
+          this.element.style.transitionDuration = "0.5s";
+          this.element.style.transform = "rotatey(" + this.k + "deg)";
+          this.element.src = this.images[this.idx];
+        }
+
+        identity() {
+          this.k += 90;
+          this.element.style.transitionDuration = "0.5s";
+          this.element.style.transform = "rotatey(" + this.k + "deg)";
+          this.element.src = this.element.src;
+        }
+        }
 
       class ClickListener1 {
       constructor(images) {
