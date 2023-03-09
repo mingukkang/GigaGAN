@@ -47,7 +47,7 @@
           <h1 class="title is-2 publication-title">Scaling up GANs for Text-to-Image Synthesis</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://github.com/MINGUKKANG">Minguk Kang</a><sup>1,3</sup>,</span>
+              <a href="https://mingukkang.github.io/">Minguk Kang</a><sup>1,3</sup>,</span>
             <span class="author-block">
               <a href="https://www.cs.cmu.edu/~junyanz/">Jun-Yan Zhu</a><sup>2</sup>,</span>
             <span class="author-block">
@@ -385,7 +385,7 @@
         <div class="container is-max-desktop">
           <div id="results-carousel" class="carousel results-carousel">
             <div class="item item-male">
-              <img src="./static/images/style_swapping.png"
+              <img src="./static/images/style_swapping.jpg"
               class="interpolation-image"/>
             </div>
             <div class="item item-car">
@@ -398,10 +398,103 @@
             </div>
           </div>
         </div>
-      <!-- Prompt Interpolation image -->
-      </div>
-    </div>
+
     <!--/ Animation. -->
+    <br>
+    <h3 class="title is-3">Click images to see more examples</h3>
+    <div id="player">
+    </div>
+
+    <script>
+    class ClickListener {
+      constructor(images) {
+        this.rootElement = document.querySelector( "#player" );
+        this.element = document.createElement("img");
+        this.rootElement.appendChild(this.element);
+        this.images = images
+        this.idx = 0
+        this.init()
+      }
+    
+      init() {
+        this.element.src = this.images[this.idx]
+        this.element.style.width = `320px`;
+        this.element.style.height = `320px`;
+        this.element.onclick = this.nextImage.bind(this)
+      }
+    
+      nextImage() {
+        this.idx++;
+        if(this.idx >= this.images.length) {
+          this.idx = 0;
+        }
+        this.element.src = this.images[this.idx]
+        }
+      }
+
+      class ClickListener1 {
+      constructor(images) {
+        this.rootElement = document.querySelector( "#player" );
+        this.element = document.createElement("img");
+        this.rootElement.appendChild(this.element);
+        this.images = images
+        this.idx = 0
+        this.init()
+      }
+    
+      init() {
+        this.element.src = this.images[this.idx]
+        this.element.style.width = `960px`;
+        this.element.style.height = `50px`;
+        this.element.onclick = this.nextImage.bind(this)
+      }
+    
+      nextImage() {
+        this.idx++;
+        if(this.idx >= this.images.length) {
+          this.idx = 0;
+        }
+        this.element.src = this.images[this.idx]
+        }
+      }
+    </script>
+
+    <script>
+    new ClickListener(['./static/images/car0.jpg', './static/images/car1.jpg', './static/images/car2.jpg', './static/images/car3.jpg', './static/images/car4.jpg'])
+    new ClickListener(['./static/images/galaxy0.jpg', './static/images/galaxy1.jpg', './static/images/galaxy2.jpg', './static/images/galaxy3.jpg', './static/images/galaxy4.jpg'])
+    new ClickListener(['./static/images/newton0.jpg', './static/images/newton1.jpg', './static/images/newton2.jpg', './static/images/newton3.jpg', './static/images/newton4.jpg',])
+    new ClickListener1(['./static/images/caption0_.png',])
+    new ClickListener(['./static/images/sea0.jpg', './static/images/sea1.jpg', './static/images/sea2.jpg', './static/images/sea3.jpg', './static/images/sea4.jpg'])
+    new ClickListener(['./static/images/candle2.jpg', './static/images/candle1.jpg', './static/images/candle3.jpg', './static/images/candle0.jpg', './static/images/candle4.jpg'])
+    new ClickListener(['./static/images/bread0.jpg', './static/images/bread1.jpg', './static/images/bread2.jpg', './static/images/bread3.jpg', './static/images/bread4.jpg',])
+    new ClickListener1(['./static/images/caption1.png',])
+    new ClickListener(['./static/images/alps0.jpg', './static/images/alps1.jpg', './static/images/alps2.jpg', './static/images/alps3.jpg', './static/images/alps4.jpg'])
+    new ClickListener(['./static/images/light0.jpg', './static/images/light1.jpg', './static/images/light2.jpg', './static/images/light3.jpg', './static/images/light4.jpg'])
+    new ClickListener(['./static/images/castle0.jpg', './static/images/castle1.jpg', './static/images/castle2.jpg', './static/images/castle3.jpg', './static/images/castle4.jpg'])
+    new ClickListener1(['./static/images/caption2.png',])
+    </script>
+    
+    <br>
+
+    <!--/ Matting. -->
+    <div class="container is-max-desktop">
+    
+      <!-- Latent space editing applications -->
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3 has-text-centered">Related works</h2>
+          <div class="content has-text-justified">
+            <p>
+              <li>Nupur Kumari, Richard Zhang, Eli Shechtman, and Jun-Yan Zhu. <a href="https://arxiv.org/abs/2112.09130">Ensembling Off-the-shelf Models for GAN Training.</a> In IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2022.</li><br>
+              <li>Yufan Zhou, Ruiyi Zhang, Changyou Chen, Chunyuan Li, Chris Tensmeyer, Tong Yu, Jiuxiang Gu, Jinhui Xu, and Tong Sun. <a href="https://arxiv.org/abs/2111.13792">LAFITE: Towards Language-Free Training for Text-to-Image Generation</a>. In IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2022.</li><br>
+              <li>Tero Karras, Samuli Laine, Miika Aittala, Janne Hellsten, Jaakko Lehtinen, and Timo Aila. <a href="https://arxiv.org/abs/1912.04958">Analyzing and Improving the Image Quality of StyleGAN.</a> In IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2020.</li><br>
+              <li>Han Zhang, Tao Xu, Hongsheng Li, Shaoting Zhang, Xiaogang Wang, Xiaolei Huang, and Dimitris N Metaxas. <a href="https://arxiv.org/abs/1612.03242">StackGAN: Text to Photo-realistic Image Synthesis with Stacked Generative Adversarial Networks.</a> In IEEE International Conference on Computer Vision (ICCV), 2017.</li><br>
+              <li> Scott Reed, Zeynep Akata, Xinchen Yan, Lajanugen Logeswaran, Bernt Schiele, and Honglak Lee. <a href="https://arxiv.org/abs/1605.05396">Generative Adversarial Text to Image Synthesis</a>. In International Conference on Machine Learning (ICML), 2016.</li><br>
+            </p>
+          </div>
+          <!-- Prompt Interpolation image -->
+        </div>
+      </div>
 
     <!-- Concurrent Work. -->
     <div class="columns is-centered">
@@ -429,7 +522,7 @@
     <pre><code>@inproceedings{kang2023gigagan,
   author    = {Kang, Minguk and Zhu, Jun-Yan and Zhang, Richard and Park, Jaesik and Shechtman, Eli and Paris, Sylvain and Park, Taesung},
   title     = {Scaling up GANs for Text-to-Image Synthesis},
-  booktitle   = {Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  booktitle = {Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
   year      = {2023},
 }</code></pre>
   </div>
@@ -520,34 +613,33 @@ function tab_gallery_click(name) {
   // Show the container element (hidden with CSS)
   // expandImg.parentElement.style.display = "block";
 
-  $(".flip-card").mouseenter(function() {
-      console.log("fading in")
-      div_back = $(this).children().children()[1]
-      div_front = $(this).children().children()[0]
-      // console.log($(this).children("div.flip-card-back"))
-      console.log(div_back)
-      $(div_front).addClass("out");
-      $(div_front).removeClass("in");
+$(".flip-card").click(function() {
+            console.log("fading in")
+            div_back = $(this).children().children()[1]
+            div_front = $(this).children().children()[0]
+            // console.log($(this).children("div.flip-card-back"))
+            console.log(div_back)
+            $(div_front).addClass("out");
+            $(div_front).removeClass("in");
 
-      $(div_back).addClass("in");
-      $(div_back).removeClass("out");
+            $(div_back).addClass("in");
+            $(div_back).removeClass("out");
 
-  });
+});
 
-  $(".flip-card").mouseleave(function() {
-      console.log("fading in")
-      div_back = $(this).children().children()[1]
-      div_front = $(this).children().children()[0]
-      // console.log($(this).children("div.flip-card-back"))
-      console.log(div_back)
-      $(div_front).addClass("in");
-      $(div_front).removeClass("out");
+$(".flip-card").mouseleave(function() {
+            console.log("fading in")
+            div_back = $(this).children().children()[1]
+            div_front = $(this).children().children()[0]
+            // console.log($(this).children("div.flip-card-back"))
+            console.log(div_back)
+            $(div_front).addClass("in");
+            $(div_front).removeClass("out");
 
-      $(div_back).addClass("out");
-      $(div_back).removeClass("in");
+            $(div_back).addClass("out");
+            $(div_back).removeClass("in");
 
-  });
-
+});
 
 </script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> -->
