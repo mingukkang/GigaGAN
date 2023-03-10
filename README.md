@@ -1,6 +1,6 @@
 # GigaGAN Project page
 
-This repository contains the source code for [GigaGAN Project](https://mingukkang.github.io/GigaGAN/).
+This repository contains additonal results and website source files for [GigaGAN Project](https://mingukkang.github.io/GigaGAN/).
 
 ```bib
 @inproceedings{kang2023gigagan,
