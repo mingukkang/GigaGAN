@@ -88,7 +88,7 @@ bash scripts/evaluate_GigaGAN_cond_upsampler_laion128to1024.sh
 | CLIP score       |            -            |            -           |     - /0.33      |       - /0.32     |           -           |
 
 
-Please note that the results mentioned above were computed using the clean-FID library. The difference in FID scores (3.45 vs. 3.53) for ImageNet-Noise-to-256px images attributes to the evaluation library used. In order to make a fair comparison of GigaGAN with other state-of-the-art generative models like StyleGAN-XL, ADM-G, and RQ-Transformer, we adopted StudioGAN's evaluation protocol, which yielded a FID score of 3.45.
+Please note that the results mentioned above were computed using the clean-FID library. The difference in FID scores (3.45 vs. 3.53) for ImageNet-Noise-to-256px images attributes to the evaluation library used. In order to make a fair comparison of GigaGAN with other state-of-the-art generative models like StyleGAN-XL, ADM-G, and RQ-Transformer, we adopted StudioGAN's evaluation protocol for the Table A1 in our paper, which yielded a FID score of 3.45.
 
 The FID of ImageNet-Noise-to-256px reported in the paper was obtained using the following command. For further information, please refer to the [StudioGAN library](https://github.com/POSTECH-CVLab/PyTorch-StudioGAN).
 
