@@ -85,7 +85,7 @@ bash scripts/evaluate_GigaGAN_cond_upsampler_laion128to1024.sh
 | Paper/Reproduced | ImageNet-Noise-to-256px | ImageNet-64px-to-256px | COCO-Noise-to-256px | COCO-Noise-to-256px-diff-noised | LAION-128px-to-1024px |
 |------------------|:-----------------------:|:----------------------:|:-------------------:|:-------------------------------:|:---------------------:|
 | FID              |        3.45/ 3.53        |         1.2/1.2        |      9.09/9.06       |       - /12.16       |       1.54/1.54       |
-| CLIP score       |            -            |            -           |     - / 0.33      |       - /0.32     |           -           |
+| CLIP score       |            -            |            -           |     - /0.33      |       - /0.32     |           -           |
 
 
 Please note that the results mentioned above were computed using the clean-FID library. The difference in FID scores (3.45 vs. 3.53) for ImageNet-Noise-to-256px images attributes to the evaluation library used. In order to make a fair comparison of GigaGAN with other state-of-the-art generative models like StyleGAN-XL, ADM-G, and RQ-Transformer, we adopted StudioGAN's evaluation protocol, which yielded a FID score of 3.45.
