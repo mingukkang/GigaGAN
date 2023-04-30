@@ -1,6 +1,6 @@
 # Evaluation of GigaGAN using clean-FID
 
-To compare different generative models, we use Fre'chet Inception Distance (FID) and CLIP-score. To compute FID without the issue of aliasing, we use a clean-FID library.
+We employ the Fre'chet Inception Distance (FID) and CLIP-score to compare diverse generative models. We use a clean-FID library to ensure that the FID is calculated without any problems of aliasing. Moreover, we have released our evaluation code for the public, which can be utilized to evaluate images from other generative models as well.
 
 # Requirements 
 
